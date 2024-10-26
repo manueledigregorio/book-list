@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,9 +18,30 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $categories = [
+            'Fiction',
+            'Non-Fiction',
+            'Fantasy',
+            'Science Fiction',
+            'Mystery',
+            'Biography',
+            'Self-Help',
+            'Romance',
+            'Historical Fiction',
+            'Thriller',
+            'Young Adult',
+            'Cookbooks',
+            'Travel',
+            'Health & Wellness',
+            'Business',
+            'Philosophy',
+            'Poetry',
+            'Graphic Novels',
+            'Religion & Spirituality',
+        ];
+
+        foreach ($categories as $category) {
+            \App\Models\Category::create(['name' => $category]);
+        }
     }
 }

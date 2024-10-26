@@ -7,7 +7,7 @@ use App\Filament\Resources\BookResource\RelationManagers;
 use App\Models\Book;
 use Doctrine\DBAL\Schema\Column;
 use Filament\Forms;
-use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Form;
@@ -39,6 +39,11 @@ class BookResource extends Resource
                     ->required(),
                 TextInput::make('genre')
                     ->label('Genere'),
+                Select::make('categories')
+                    ->label('Categorie')
+                    ->relationship('categories', 'name') // Indica la relazione e il campo da visualizzare
+                    ->multiple() // Permette di selezionare più categorie
+                    ->required(), // Se desiderato
             ]);
     }
 
@@ -50,6 +55,9 @@ class BookResource extends Resource
                 Tables\Columns\TextColumn::make('author')->searchable(),
                 Tables\Columns\TextColumn::make('published_date')->date(),
                 Tables\Columns\TextColumn::make('genre'),
+                Tables\Columns\TextColumn::make('categories.name')
+                    ->label('Categorie') // Nome della colonna
+                    ->getStateUsing(fn($record) => $record->categories->pluck('name')->implode(', ')),
             ])
             ->filters([
                 //
