@@ -75,8 +75,4 @@ Contributi sono benvenuti! Segui questi passaggi per contribuire al progetto:
    ```
 5. **Crea una pull request**
 
-## Licenza
-Questo progetto è sotto la licenza MIT - vedi il file [LICENSE](LICENSE) per dettagli.
 
-## Contatti
-Per domande o suggerimenti, contatta [tuo-email@example.com].
